@@ -142,17 +142,17 @@ class _ContainerSesionState extends State<ContainerSesion> {
                         ],
                       ),
                       SizedBox(height: 13,),
-                      TextField(
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                          hintText: 'Ingrese su correo electronico',
-                          hintStyle: GoogleFonts.imprima(),
-                          fillColor: Colors.black,
-                        ),
-                        onSubmitted: (value){
-                          print(value);
-                        },
-                      ),
+                      // TextField(
+                      //   decoration: InputDecoration(
+                      //     border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                      //     hintText: 'Ingrese su correo electronico',
+                      //     hintStyle: GoogleFonts.imprima(),
+                      //     fillColor: Colors.black,
+                      //   ),
+                      //   onSubmitted: (value){
+                      //     print(value);
+                      //   },
+                      // ),
                       
                       SizedBox(height: 13,),
                       Row(
@@ -167,21 +167,22 @@ class _ContainerSesionState extends State<ContainerSesion> {
                         ],
                       ),
                       SizedBox(height: 13,),
-                      TextField(
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                          hintText: 'Ingrese su contraseña',
-                          hintStyle: GoogleFonts.imprima(),
-                          fillColor: Colors.black,
-                          
-                        ),
-                        enableSuggestions: false,
-                        obscureText: true,
-                        autocorrect: false,
-                        onChanged: (value){
-                          print(value);
-                        },
-                      ),
+                      // TextField(
+
+                      //   decoration: InputDecoration(
+                      //     border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                      //     hintText: 'Ingrese su contraseña',
+                      //     hintStyle: GoogleFonts.imprima(),
+                      //     fillColor: Colors.black,
+
+                      //   ),
+                      //   enableSuggestions: false,
+                      //   obscureText: true,
+                      //   autocorrect: false,
+                      //   onChanged: (value){
+                      //     print(value);
+                      //   },
+                      // ),
                         // SvgPicture.asset('iconos/user.svg'),
                       SizedBox(height: 40,),
                       Row(

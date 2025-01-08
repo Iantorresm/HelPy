@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:helpy/constants/colors.dart';
-
+import 'package:helpy/sesion/login.dart';
+import 'package:helpy/sesion/register.dart';
+import 'dart:ui';
 void main() {
   runApp(const MyApp());
 }
@@ -23,6 +25,9 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+bool mostrarSesion = false;
+bool mostrarRegister = false;
+bool barrier = true;
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -34,11 +39,35 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  
-  void _login(){
-    print("Hola");
+  void _setStateLogin(){
+    setState(() {
+      mostrarSesion = true;
+      mostrarRegister = false;
+    });
   }
   
+  // void _showContainerLogin(){
+  //   ContainerSesion(
+  //     mostrarSesion: mostrarSesion,
+  //     onDismissed: () {
+  //       setState(() {
+  //         mostrarSesion = false;
+  //         // mostrarRegister = false;
+  //       });
+  //     },
+  //   );
+  // }
+  
+  // void _showContainerRegister(){
+  //   ContainerRegister(
+  //     mostrarRegister: mostrarRegister,
+  //     onDismissed: () {
+  //       setState(() {
+  //         mostrarRegister = false;
+  //       });
+  //     },
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +107,40 @@ class _MyHomePageState extends State<MyHomePage> {
                     fontSize: 20
                   )
                 ),
-                onPressed: _login, 
+                onPressed: () {
+                  _setStateLogin();
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) => BackdropFilter(
+                      filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                      // backgroundColor: Colors.transparent,
+                      // alignment: Alignment.bottomCenter,
+                      key: Key('dialog'),
+                      child: 
+                        mostrarSesion == true ?
+                        ContainerSesion(
+                          mostrarSesion: mostrarSesion,
+                          onDismissed: () {
+                            setState(() {
+                              mostrarSesion = false;
+                              barrier = false;
+                            });
+                            print('mostrarSesion: $mostrarSesion');
+                          },
+                        )
+                        :
+                        ContainerRegister(
+                          mostrarRegister: true,
+                          onDismissed: () {
+                            setState(() {
+                              mostrarRegister = false;
+                            });
+                          },
+                        ),
+                    ),
+                    
+                  );
+                },
                 icon:Icon(
                   Icons.login,
                   size: 20,
