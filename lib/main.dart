@@ -6,9 +6,14 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -35,21 +40,79 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  
-  void _login(){
-    print("Hola");
-  }
+
   
 
   @override
   Widget build(BuildContext context) {
 
-    String _valorBuscador = '';
+    String valorBuscador = '';
 
     return Scaffold(
 
       // Nav bar
-      appBar: NavBar(context,_login),
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        title:Row(
+          mainAxisAlignment:MainAxisAlignment.spaceBetween,
+          children: [
+            
+            // Helpy Logo
+            SizedBox(
+              width: 120,
+              child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Image(
+                    image: AssetImage('assets/logo/image.png'),
+                  ),
+              ),
+            ),
+
+            //Login button
+            SizedBox(
+              child: FilledButton.icon(
+                style: FilledButton.styleFrom(
+                  backgroundColor: Theme.of(context).colorScheme.primary,
+                  shape: ContinuousRectangleBorder(
+                    borderRadius: BorderRadius.circular(5.0)
+                  ),
+                  textStyle: TextStyle(
+                    fontWeight:FontWeight.w400,
+                    fontSize: 20
+                  )
+                ),
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) => BackdropFilter(
+                      filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                      key: Key('dialog'),
+                      child: ContainerSesion(
+                          onDismissed: () {
+                            setState(() {
+
+                            });
+                          },
+                        ),
+                    ),
+                    
+                  );
+                },
+                icon:Icon(
+                  Icons.login,
+                  size: 20,
+                ),
+                iconAlignment: IconAlignment.end,
+                label: Text(
+                  "Iniciar sesion",
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            )
+            
+          ],
+        )
+      ),
       
       // Menu principal
       body: Center(
@@ -101,8 +164,8 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                           onChanged: (value) {
                             setState(() {
-                              _valorBuscador = value;
-                              print(_valorBuscador);
+                              valorBuscador = value;
+                              print(valorBuscador);
                             });
                           },
                         ),
