@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:helpy/constants/colors.dart';
 import 'package:helpy/sesion/login.dart';
-import 'package:helpy/sesion/register.dart';
+// import 'package:helpy/sesion/register.dart';
 import 'dart:ui';
+
 void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -25,9 +31,6 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-bool mostrarSesion = false;
-bool mostrarRegister = false;
-bool barrier = true;
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -39,40 +42,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  void _setStateLogin(){
-    setState(() {
-      mostrarSesion = true;
-      mostrarRegister = false;
-    });
-  }
+
   
-  // void _showContainerLogin(){
-  //   ContainerSesion(
-  //     mostrarSesion: mostrarSesion,
-  //     onDismissed: () {
-  //       setState(() {
-  //         mostrarSesion = false;
-  //         // mostrarRegister = false;
-  //       });
-  //     },
-  //   );
-  // }
-  
-  // void _showContainerRegister(){
-  //   ContainerRegister(
-  //     mostrarRegister: mostrarRegister,
-  //     onDismissed: () {
-  //       setState(() {
-  //         mostrarRegister = false;
-  //       });
-  //     },
-  //   );
-  // }
 
   @override
   Widget build(BuildContext context) {
 
-    String _valorBuscador = '';
+    String valorBuscador = '';
 
     return Scaffold(
 
@@ -108,32 +84,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   )
                 ),
                 onPressed: () {
-                  _setStateLogin();
                   showDialog(
                     context: context,
                     builder: (BuildContext context) => BackdropFilter(
                       filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                      // backgroundColor: Colors.transparent,
-                      // alignment: Alignment.bottomCenter,
                       key: Key('dialog'),
-                      child: 
-                        mostrarSesion == true ?
-                        ContainerSesion(
-                          mostrarSesion: mostrarSesion,
+                      child: ContainerSesion(
                           onDismissed: () {
                             setState(() {
-                              mostrarSesion = false;
-                              barrier = false;
-                            });
-                            print('mostrarSesion: $mostrarSesion');
-                          },
-                        )
-                        :
-                        ContainerRegister(
-                          mostrarRegister: true,
-                          onDismissed: () {
-                            setState(() {
-                              mostrarRegister = false;
+
                             });
                           },
                         ),
@@ -207,8 +166,8 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                           onChanged: (value) {
                             setState(() {
-                              _valorBuscador = value;
-                              print(_valorBuscador);
+                              valorBuscador = value;
+                              print(valorBuscador);
                             });
                           },
                         ),
