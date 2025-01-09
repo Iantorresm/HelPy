@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:helpy/constants/colors.dart';
+import 'package:helpy/ui/navigation/navigationBar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -48,52 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
 
       // Nav bar
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        title:Row(
-          mainAxisAlignment:MainAxisAlignment.spaceBetween,
-          children: [
-            
-            // Helpy Logo
-            SizedBox(
-              width: 120,
-              child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Image(
-                    image: AssetImage('assets/logo/image.png'),
-                  ),
-              ),
-            ),
-
-            //Login button
-            SizedBox(
-              child: FilledButton.icon(
-                style: FilledButton.styleFrom(
-                  backgroundColor: Theme.of(context).colorScheme.primary,
-                  shape: ContinuousRectangleBorder(
-                    borderRadius: BorderRadius.circular(5.0)
-                  ),
-                  textStyle: TextStyle(
-                    fontWeight:FontWeight.w400,
-                    fontSize: 20
-                  )
-                ),
-                onPressed: _login, 
-                icon:Icon(
-                  Icons.login,
-                  size: 20,
-                ),
-                iconAlignment: IconAlignment.end,
-                label: Text(
-                  "Iniciar sesion",
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            )
-            
-          ],
-        )
-      ),
+      appBar: NavBar(context,_login),
       
       // Menu principal
       body: Center(
