@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:helpy/sesion/register.dart';
+import 'package:helpy/ui/auth/register.dart';
 import 'dart:ui';
 
-class ContainerSesion extends StatefulWidget {
+class LoginSesion extends StatefulWidget {
   final VoidCallback onDismissed;
 
-  const ContainerSesion({super.key, required this.onDismissed});
+  const LoginSesion({super.key, required this.onDismissed});
 
   @override
-  State<ContainerSesion> createState() => _ContainerSesionState();
+  State<LoginSesion> createState() => _LoginSesionState();
 }
 
-class _ContainerSesionState extends State<ContainerSesion> {
+class _LoginSesionState extends State<LoginSesion> {
   bool usercheck = true;
   bool providercheck = false;
   
@@ -38,7 +38,7 @@ class _ContainerSesionState extends State<ContainerSesion> {
                 widget.onDismissed();
                 Navigator.pop(context);
               },
-              key: const ValueKey('containerSesion'),
+              key: const ValueKey('loginSesion'),
               direction: DismissDirection.vertical,
               child: Container(
                 width: 400,
