@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:helpy/constants/colors.dart';
 import 'package:helpy/sesion/login.dart';
-// import 'package:helpy/sesion/register.dart';
 import 'dart:ui';
 
 void main() {

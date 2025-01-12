@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'dart:ui';
+
+import 'package:helpy/sesion/loginExtend.dart';
 
 class ContainerRegister extends StatefulWidget {
   final VoidCallback onDismissed;
@@ -28,8 +31,8 @@ class _ContainerSesionState extends State<ContainerRegister> {
       backgroundColor: Colors.transparent,
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(height: 75,),
             Dismissible(
               onDismissed: (direction) {
                 widget.onDismissed();
@@ -64,24 +67,34 @@ class _ContainerSesionState extends State<ContainerRegister> {
                         SizedBox(height: 20,),
                         Row(
                           children: [
-                            Text(
-                              "Crea tu perfil",
-                              style: GoogleFonts.imprima(
-                                color: Colors.black,
-                                fontSize: 20
-                              ),
+                            Wrap(
+                              children: [
+                                // Icon(Icons.person_outline_rounded,size: 27,),
+                                Text(
+                                  "Crea tu perfil",
+                                  style: GoogleFonts.imprima(
+                                    color: Colors.black,
+                                    fontSize: 20
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
                         ),
                         SizedBox(height: 27,),
                         Row(
                           children: [
-                            Text(
-                              "Correo electronico",
-                              style: GoogleFonts.imprima(
-                                color: Colors.black,
-                                fontSize: 20,
-                              ),
+                            Wrap(
+                              children: [
+                                Icon(Icons.email_outlined,size: 27,),
+                                Text(
+                                  " Correo electronico",
+                                  style: GoogleFonts.imprima(
+                                    color: Colors.black,
+                                    fontSize: 20,
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
                         ),
@@ -101,12 +114,17 @@ class _ContainerSesionState extends State<ContainerRegister> {
                         SizedBox(height: 13,),
                         Row(
                           children: [
-                            Text(
-                              "Contraseña",
-                              style: GoogleFonts.imprima(
-                                color: Colors.black,
-                                fontSize: 20
-                              ),
+                            Wrap(
+                              children: [
+                                Icon(Icons.lock_outline_rounded,size: 27,),
+                                Text(
+                                  " Contraseña",
+                                  style: GoogleFonts.imprima(
+                                    color: Colors.black,
+                                    fontSize: 20
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
                         ),
@@ -164,8 +182,23 @@ class _ContainerSesionState extends State<ContainerRegister> {
                           Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
-                            TextButton(
-                              onPressed: (){},
+                            TextButton.icon(
+                              onPressed: (){
+                                widget.onDismissed();
+                                setState(() {
+                                });
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) => BackdropFilter(
+                                    filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                                    child: ContainerSesionExtend(
+                                      onDismissed: (){
+                                        Navigator.pop(context);
+                                      },
+                                    ),
+                                  ),
+                                );
+                              },
                               style: ButtonStyle(
                                 backgroundColor: WidgetStateProperty.all(Color.fromRGBO(244, 196, 48, 1)),
                                 shape: WidgetStateProperty.all(
@@ -175,9 +208,9 @@ class _ContainerSesionState extends State<ContainerRegister> {
                                 ),
                                 padding: WidgetStateProperty.all(EdgeInsets.fromLTRB(0, 15, 0, 15)),
                               ),
-                              
-                              child: Text(
-                                'Crear perfil',
+                              icon: Icon(Icons.arrow_forward_ios, color: Colors.black,),
+                              label: Text(
+                                'Continuar',
                                 style: GoogleFonts.imprima(
                                   color: Colors.black,
                                   fontSize: 20,

@@ -26,13 +26,12 @@ class _ContainerSesionState extends State<ContainerSesion> {
 
   @override
   Widget build(BuildContext context) {
-    final maxHeight = 75.0;
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(height: maxHeight,),
             Dismissible(
               onDismissed: (direction) {
                 widget.onDismissed();
@@ -52,6 +51,7 @@ class _ContainerSesionState extends State<ContainerSesion> {
                     width: 400-70,
                     height: 570-70,
                     decoration: BoxDecoration(
+
                     ),
                     child: Column(
                       children: [
@@ -123,12 +123,17 @@ class _ContainerSesionState extends State<ContainerSesion> {
                         SizedBox(height: 27,),
                         Row(
                           children: [
-                            Text(
-                              "Correo electronico",
-                              style: GoogleFonts.imprima(
-                                color: Colors.black,
-                                fontSize: 20,
-                              ),
+                            Wrap(
+                              children: [
+                                Icon(Icons.email_outlined,size: 27,),
+                                Text(
+                                  " Correo electronico",
+                                  style: GoogleFonts.imprima(
+                                    color: Colors.black,
+                                    fontSize: 20,
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
                         ),
@@ -148,12 +153,17 @@ class _ContainerSesionState extends State<ContainerSesion> {
                         SizedBox(height: 13,),
                         Row(
                           children: [
-                            Text(
-                              "Contraseña",
-                              style: GoogleFonts.imprima(
-                                color: Colors.black,
-                                fontSize: 20
-                              ),
+                            Wrap(
+                              children: [
+                                Icon(Icons.lock_outline_rounded,size: 27,),
+                                Text(
+                                  " Contraseña",
+                                  style: GoogleFonts.imprima(
+                                    color: Colors.black,
+                                    fontSize: 20
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
                         ),
