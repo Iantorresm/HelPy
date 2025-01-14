@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ContainerSesionExtend extends StatefulWidget {
+class MoreRegisterNormal extends StatefulWidget {
   final VoidCallback onDismissed;
 
-  const ContainerSesionExtend({super.key, required this.onDismissed});
+  const MoreRegisterNormal({super.key, required this.onDismissed});
 
   @override
-  State<ContainerSesionExtend> createState() => _ContainerSesionState();
+  State<MoreRegisterNormal> createState() => _MoreRegisterNormalState();
 }
 
-class _ContainerSesionState extends State<ContainerSesionExtend> {
+class _MoreRegisterNormalState extends State<MoreRegisterNormal> {
 
   @override
   Widget build(BuildContext context) {
@@ -27,16 +27,16 @@ class _ContainerSesionState extends State<ContainerSesionExtend> {
               key: const ValueKey('containerSesion'),
               direction: DismissDirection.vertical,
               child: Container(
-                width: 600,
-                height: 560,
+                width: 500,
+                height: 660,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(25),
                 ),
                 child: Center(
                   child: Container(
-                    width: 600-70,
-                    height: 570-70,
+                    width: 400-70,
+                    height: 670-70,
                     decoration: BoxDecoration(
                     ),
                     child: Column(
@@ -68,70 +68,57 @@ class _ContainerSesionState extends State<ContainerSesionExtend> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                SizedBox(
-                                  width: 250,
-                                  child: Text(
-                                    "Nombre",
-                                    style: GoogleFonts.imprima(
-                                      color: Colors.black,
-                                      fontSize: 20,
-                                    ),
-                                  ),
+                            SizedBox(
+                              width: 250,
+                              child: Text(
+                                "Nombre",
+                                style: GoogleFonts.imprima(
+                                  color: Colors.black,
+                                  fontSize: 20,
                                 ),
-                                SizedBox(height: 13,),
-                                SizedBox(
-                                  height: 50,
-                                  width: 250,
-                                  child: TextField( 
-                                    decoration: InputDecoration(
-                                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                                      hintText: 'Ingrese su nombre',
-                                      hintStyle: GoogleFonts.imprima(),
-                                      fillColor: Colors.black,
-                                    ),
-                                    onChanged: (value){
-                                      print(value);
-                                    },
-                                  ),
-                                ),
-                              ]
+                              ),
                             ),
-                            SizedBox(height: 13,width: 30,),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                SizedBox(
-                                  width: 250,
-                                  child: Text(
-                                    "Apellido",
-                                    style: GoogleFonts.imprima(
-                                      color: Colors.black,
-                                      fontSize: 20
-                                    ),
-                                  ),
+                            SizedBox(height: 13,),
+                          ]
+                        ),
+                        TextField( 
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                            hintText: 'Ingrese su nombre',
+                            hintStyle: GoogleFonts.imprima(),
+                            fillColor: Colors.black,
+                          ),
+                          onChanged: (value){
+                            print(value);
+                          },
+                        ),
+                        SizedBox(height: 13,width: 30,),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              width: 250,
+                              child: Text(
+                                "Apellido",
+                                style: GoogleFonts.imprima(
+                                  color: Colors.black,
+                                  fontSize: 20
                                 ),
-                                SizedBox(height: 13,),
-                                SizedBox(
-                                  height: 50,
-                                  width: 250,
-                                  child: TextFormField(
-                                  decoration: InputDecoration(
-                                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                                    hintText: 'Ingrese su apellido',
-                                    hintStyle: GoogleFonts.imprima(),
-                                    fillColor: Colors.black,
-                                    ),
-                                    onChanged: (value){
-                                      print(value);
-                                    },
-                                  ),
-                                ),
-                              ]
+                              ),
                             ),
-                          ],
+                            SizedBox(height: 13,),
+                          ]
+                        ),
+                        TextFormField(
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                          hintText: 'Ingrese su apellido',
+                          hintStyle: GoogleFonts.imprima(),
+                          fillColor: Colors.black,
+                          ),
+                          onChanged: (value){
+                            print(value);
+                          },
                         ),
                         
                         SizedBox(height: 13,),

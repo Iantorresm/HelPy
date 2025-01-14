@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:helpy/ui/auth/moreRegisterNormal.dart';
 import 'dart:ui';
 
-import 'package:helpy/ui/auth/loginExtend.dart';
-
-class ContainerRegister extends StatefulWidget {
+class ContainerRegisterNormal extends StatefulWidget {
   final VoidCallback onDismissed;
 
-  const ContainerRegister({super.key, required this.onDismissed});
+  const ContainerRegisterNormal({super.key, required this.onDismissed});
 
   @override
-  State<ContainerRegister> createState() => _ContainerSesionState();
+  State<ContainerRegisterNormal> createState() => _ContainerRegisterNormalState();
 }
 
-class _ContainerSesionState extends State<ContainerRegister> {
+class _ContainerRegisterNormalState extends State<ContainerRegisterNormal> {
   bool usercheck = true;
   bool providercheck = false;
   
@@ -40,8 +39,8 @@ class _ContainerSesionState extends State<ContainerRegister> {
               key: const ValueKey('containerRegister'),
               direction: DismissDirection.vertical,
               child: Container(
-                width: 400,
-                height: 560,
+                width: 500,
+                height: 600,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(25),
@@ -49,7 +48,7 @@ class _ContainerSesionState extends State<ContainerRegister> {
                 child: Center(
                   child: SizedBox(
                     width: 400-70,
-                    height: 570-70,
+                    height: 590-70,
                     child: Column(
                       children: [
                         Container(
@@ -128,20 +127,47 @@ class _ContainerSesionState extends State<ContainerRegister> {
                             ),
                           ],
                         ),
-                        SizedBox(height: 13,),
                         TextField(
                           decoration: InputDecoration(
                             border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                             hintText: 'Ingrese su contraseña',
                             hintStyle: GoogleFonts.imprima(),
                             fillColor: Colors.black,
-                            
                           ),
                           enableSuggestions: false,
                           obscureText: true,
                           autocorrect: false,
                         ),
-                        SizedBox(height: 40,),
+                        SizedBox(height: 13,),
+                        Row(
+                          children: [
+                            Wrap(
+                              children: [
+                                Icon(Icons.lock_outline_rounded,size: 27,),
+                                Text(
+                                  " Repite tu contraseña",
+                                  style: GoogleFonts.imprima(
+                                    color: Colors.black,
+                                    fontSize: 20
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        TextField(
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                            hintText: 'Ingrese su contraseña',
+                            hintStyle: GoogleFonts.imprima(),
+                            fillColor: Colors.black,
+                          ),
+                          enableSuggestions: false,
+                          obscureText: true,
+                          autocorrect: false,
+                        ),
+                        SizedBox(width: 13,),
+                        // SizedBox(height: 40,),
                         Row(
                           children: [
                             SizedBox(width: 35,),
@@ -191,7 +217,7 @@ class _ContainerSesionState extends State<ContainerRegister> {
                                   context: context,
                                   builder: (BuildContext context) => BackdropFilter(
                                     filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                                    child: ContainerSesionExtend(
+                                    child: MoreRegisterNormal(
                                       onDismissed: (){
                                         Navigator.pop(context);
                                       },

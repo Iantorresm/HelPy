@@ -158,7 +158,7 @@ class _HomePageState extends State<HomePage> {
                 context: context,
                 builder: (BuildContext context) => BackdropFilter(
                   filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                  child: LoginSesion(
+                  child: Login(
                     onDismissed: () {
                       setState(() {});
                     },

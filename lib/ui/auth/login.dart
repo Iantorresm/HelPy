@@ -1,26 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:helpy/ui/auth/register.dart';
+import 'package:helpy/ui/auth/registerNormal.dart';
+import 'package:helpy/ui/auth/registerWide.dart';
 import 'dart:ui';
 
-class LoginSesion extends StatefulWidget {
+class Login extends StatefulWidget {
   final VoidCallback onDismissed;
 
-  const LoginSesion({super.key, required this.onDismissed});
+  const Login({super.key, required this.onDismissed});
 
   @override
-  State<LoginSesion> createState() => _LoginSesionState();
+  State<Login> createState() => _LoginState();
 }
 
-class _LoginSesionState extends State<LoginSesion> {
-  bool usercheck = true;
-  bool providercheck = false;
-  
+class _LoginState extends State<Login> {
+  bool _usercheck = true;
+  bool _providercheck = false;
+  String _password = '';
+  String _errorText = '';
+  bool _passvalid = false;
+  bool _boolbutton = false;
   void _toggleIcon() {
     setState(() {
-      usercheck = !usercheck;
-      providercheck = !providercheck;
+      _usercheck = !_usercheck;
+      _providercheck = !_providercheck;
     });
   }
 
@@ -37,7 +41,7 @@ class _LoginSesionState extends State<LoginSesion> {
                 widget.onDismissed();
                 Navigator.pop(context);
               },
-              key: const ValueKey('loginSesion'),
+              key: const ValueKey('login'),
               direction: DismissDirection.vertical,
               child: Container(
                 width: 400,
@@ -51,7 +55,7 @@ class _LoginSesionState extends State<LoginSesion> {
                     width: 400-70,
                     height: 570-70,
                     decoration: BoxDecoration(
-
+                      // color: Colors.red,
                     ),
                     child: Column(
                       children: [
@@ -87,16 +91,45 @@ class _LoginSesionState extends State<LoginSesion> {
                                 });
                                 showDialog(
                                   context: context,
-                                  builder: (BuildContext context) => BackdropFilter(
-                                    filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                                    child: ContainerRegister(
-                                      onDismissed: (){
-                                        Navigator.pop(context);
+                                  builder: (BuildContext context) => BackdropFilter(filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                                  child: LayoutBuilder(
+                                    builder: (BuildContext context, BoxConstraints constraints) {
+                                      if(constraints.maxWidth >= 600){
+                                        // showDialog(
+                                        //   context: context,
+                                        //   builder: (BuildContext context) => BackdropFilter(
+                                        //     filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                                        //     child: ContainerRegister(
+                                        //       onDismissed: (){
+                                        //         Navigator.pop(context);
+                                        //       },
+                                        //     ),
+                                        //   ),
+                                        // );
+                                        // return Scaffold(
+                                        //   body: ContainerRegisterWide(onDismissed: (){
+                                        //     Navigator.pop(context);
+                                        //   }),
+                                        // );
+                                        return ContainerRegisterWide(onDismissed: (){
+                                          Navigator.pop(context);
+                                        },);
+                                      }else{
+                                        // return ContainerRegisterNormal(onDismissed: (){
+                                        //     Navigator.pop(context);
+                                        //   },),
+                                        //   );
+                                        // }
+                                        return ContainerRegisterNormal(onDismissed: (){
+                                          Navigator.pop(context);
+                                        },);
+                                      }
                                       },
                                     ),
                                   ),
                                 );
                               },
+                            
                               // Por alguna razon que desconozco, el boton
                               // no tiene bold al pulsar, sino al mantener pulsado
                               style: ButtonStyle(
@@ -114,7 +147,8 @@ class _LoginSesionState extends State<LoginSesion> {
                               child: Text(
                                 "O crea una cuenta",
                                 style: GoogleFonts.imprima(
-                                  color: Colors.black,
+                                  color: Colors.blue,
+                                  decoration: TextDecoration.underline,
                                 ),
                               ),
                             ),
@@ -169,17 +203,38 @@ class _LoginSesionState extends State<LoginSesion> {
                         ),
                         SizedBox(height: 13,),
                         TextFormField(
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                          hintText: 'Ingrese su contraseña',
-                          hintStyle: GoogleFonts.imprima(),
-                          fillColor: Colors.black,
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                            hintText: 'Ingrese su contraseña',
+                            hintStyle: GoogleFonts.imprima(),
+                            fillColor: Colors.black,
+                            errorText: _errorText.isEmpty ? null : _errorText,
                           ),
                           enableSuggestions: false,
                           obscureText: true,
                           autocorrect: false,
                           onChanged: (value){
-                            print(value);
+                            setState(() {
+                              _password = value;
+                              if(_password.length < 8){
+                                _errorText = "La contraseña debe tener al menos 8 caracteres";
+                              }else{
+                                _errorText = "";
+                              }
+                              if(_boolbutton == true){
+                                if(_passvalid == false){
+                                  _errorText = "Contraseña incorrecta";
+                                }
+                              }
+                            });
+                          },
+                          validator: (value){
+                            if(_boolbutton == true){
+                              if(_passvalid == false){
+                                return "Contraseña incorrecta";
+                              }
+                            }
+                            return null;
                           },
                         ),
                         SizedBox(height: 40,),
@@ -189,7 +244,7 @@ class _LoginSesionState extends State<LoginSesion> {
                             IconButton(
                               onPressed: _toggleIcon,
                               icon: 
-                              providercheck == false 
+                              _providercheck == false 
                                   ? SvgPicture.asset(
                                       'assets/svgs/usercheck.svg',
                                       width: 70,
@@ -205,7 +260,7 @@ class _LoginSesionState extends State<LoginSesion> {
                             IconButton(
                               onPressed: _toggleIcon,
                               icon: 
-                              usercheck == false 
+                              _usercheck == false 
                                 ? SvgPicture.asset(
                                     'assets/svgs/providercheck.svg',
                                     width: 70,
@@ -225,7 +280,16 @@ class _LoginSesionState extends State<LoginSesion> {
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
                             TextButton(
-                              onPressed: (){},
+                              onPressed: (){
+                                setState(() {
+                                  _boolbutton = true;
+                                  if(_password == "12345678"){
+                                    _passvalid = true;
+                                  }else{
+                                    _passvalid = false;
+                                  }
+                                });
+                              },
                               style: ButtonStyle(
                                 backgroundColor: WidgetStateProperty.all(Color.fromRGBO(244, 196, 48, 1)),
                                 shape: WidgetStateProperty.all(
