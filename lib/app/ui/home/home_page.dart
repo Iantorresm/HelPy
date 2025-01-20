@@ -1,6 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:helpy/ui/auth/login.dart';
+import 'package:helpy/app/ui/auth/login.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.title});
@@ -26,15 +26,10 @@ class _HomePageState extends State<HomePage> {
   }
 
   Center buscadorMenu(BuildContext context, String valorBuscador) {
-    return  Center(
+    return Center(
       child: Padding(
-        padding: const EdgeInsets.only(
-          bottom: 400,
-          left: 200,
-          right: 200,
-          top: 50
-        ),
-
+        padding:
+            const EdgeInsets.only(bottom: 400, left: 200, right: 200, top: 50),
         child: Container(
           decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.primary,
@@ -58,9 +53,7 @@ class _HomePageState extends State<HomePage> {
               ),
               // Barra de búsqueda con ancho relativo al padre
               Padding(
-                padding: const EdgeInsets.only(
-                  top: 25
-                ),
+                padding: const EdgeInsets.only(top: 25),
                 child: SizedBox(
                   height: 45, // Maxima altura
                   child: FractionallySizedBox(
@@ -93,8 +86,6 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                         ),
-                
-                
                         FractionallySizedBox(
                           heightFactor: .96,
                           child: TextButton.icon(
@@ -103,13 +94,16 @@ class _HomePageState extends State<HomePage> {
                               backgroundColor: Colors.amber,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(20), // Esquina superior derecha redondeada
-                                  bottomRight: Radius.circular(20), // Esquina inferior derecha redondeada
+                                  topRight: Radius.circular(
+                                      20), // Esquina superior derecha redondeada
+                                  bottomRight: Radius.circular(
+                                      20), // Esquina inferior derecha redondeada
                                 ),
                               ),
                             ),
                             icon: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 20),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 20),
                               child: Icon(
                                 Icons.search,
                                 color: Colors.black,
@@ -142,7 +136,7 @@ class _HomePageState extends State<HomePage> {
             width: 120,
             child: Padding(
               padding: const EdgeInsets.all(20.0),
-              child: Image.asset('assets/logo/image.png'),
+              child: Image.asset('assets/images/logo/helpy_logo.png'),
             ),
           ),
           FilledButton.icon(

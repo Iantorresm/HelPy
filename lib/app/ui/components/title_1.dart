@@ -1,0 +1,15 @@
+import 'package:flutter/material.dart';
+
+class Title1 extends StatelessWidget {
+  const Title1(this.text, {super.key});
+
+  final String text;
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: Theme.of(context).textTheme.displayLarge!.copyWith(
+          fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+    );
+  }
+}

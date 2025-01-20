@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:helpy/ui/auth/register.dart';
+import 'package:helpy/app/ui/auth/register.dart';
 import 'dart:ui';
 
 class LoginSesion extends StatefulWidget {
@@ -16,7 +16,7 @@ class LoginSesion extends StatefulWidget {
 class _LoginSesionState extends State<LoginSesion> {
   bool usercheck = true;
   bool providercheck = false;
-  
+
   void _toggleIcon() {
     setState(() {
       usercheck = !usercheck;
@@ -32,7 +32,9 @@ class _LoginSesionState extends State<LoginSesion> {
       body: Center(
         child: Column(
           children: [
-            SizedBox(height: maxHeight,),
+            SizedBox(
+              height: maxHeight,
+            ),
             Dismissible(
               onDismissed: (direction) {
                 widget.onDismissed();
@@ -49,10 +51,9 @@ class _LoginSesionState extends State<LoginSesion> {
                 ),
                 child: Center(
                   child: Container(
-                    width: 400-70,
-                    height: 570-70,
-                    decoration: BoxDecoration(
-                    ),
+                    width: 400 - 70,
+                    height: 570 - 70,
+                    decoration: BoxDecoration(),
                     child: Column(
                       children: [
                         Container(
@@ -61,36 +62,40 @@ class _LoginSesionState extends State<LoginSesion> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             color: Color.fromRGBO(209, 209, 209, 1),
-                          ), 
+                          ),
                         ),
                         // Por que hay dos SizedBox? No preguntes, funciona
-                        SizedBox(width: 300,),
-                        SizedBox(height: 20,),
+                        SizedBox(
+                          width: 300,
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
                         Row(
                           children: [
                             Text(
                               "Inicia Sesion",
                               style: GoogleFonts.imprima(
-                                color: Colors.black,
-                                fontSize: 20
-                              ),
+                                  color: Colors.black, fontSize: 20),
                             ),
                           ],
                         ),
                         Row(
                           children: [
                             TextButton(
-                              onPressed: (){
+                              onPressed: () {
                                 widget.onDismissed();
                                 setState(() {
                                   Navigator.pop(context);
                                 });
                                 showDialog(
                                   context: context,
-                                  builder: (BuildContext context) => BackdropFilter(
-                                    filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                                  builder: (BuildContext context) =>
+                                      BackdropFilter(
+                                    filter: ImageFilter.blur(
+                                        sigmaX: 10, sigmaY: 10),
                                     child: ContainerRegister(
-                                      onDismissed: (){
+                                      onDismissed: () {
                                         Navigator.pop(context);
                                       },
                                     ),
@@ -100,15 +105,22 @@ class _LoginSesionState extends State<LoginSesion> {
                               // Por alguna razon que desconozco, el boton
                               // no tiene bold al pulsar, sino al mantener pulsado
                               style: ButtonStyle(
-                                backgroundColor: WidgetStateProperty.all(Colors.transparent),
-                                padding: WidgetStateProperty.all(EdgeInsets.fromLTRB(0, 0, 0, 0)),
+                                backgroundColor:
+                                    WidgetStateProperty.all(Colors.transparent),
+                                padding: WidgetStateProperty.all(
+                                    EdgeInsets.fromLTRB(0, 0, 0, 0)),
                                 splashFactory: NoSplash.splashFactory,
-                                overlayColor: WidgetStateProperty.all(Colors.transparent),
-                                textStyle: WidgetStateProperty.resolveWith<TextStyle>((states) {
+                                overlayColor:
+                                    WidgetStateProperty.all(Colors.transparent),
+                                textStyle:
+                                    WidgetStateProperty.resolveWith<TextStyle>(
+                                        (states) {
                                   if (states.contains(WidgetState.pressed)) {
-                                    return TextStyle(fontWeight: FontWeight.bold);
+                                    return TextStyle(
+                                        fontWeight: FontWeight.bold);
                                   }
-                                  return TextStyle(fontWeight: FontWeight.normal);
+                                  return TextStyle(
+                                      fontWeight: FontWeight.normal);
                                 }),
                               ),
                               child: Text(
@@ -120,117 +132,126 @@ class _LoginSesionState extends State<LoginSesion> {
                             ),
                           ],
                         ),
-                        SizedBox(height: 27,),
+                        SizedBox(
+                          height: 27,
+                        ),
                         Row(
                           children: [
                             Text(
-                              "Correo electronico",
+                              "Correo Electrónico",
                               style: GoogleFonts.imprima(
-                                color: Colors.black,
-                                fontSize: 20,
-                              ),
+                                  color: Colors.black, fontSize: 20),
                             ),
                           ],
                         ),
-                        SizedBox(height: 13,),
+                        SizedBox(
+                          height: 13,
+                        ),
                         TextField(
                           decoration: InputDecoration(
-                            border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10)),
                             hintText: 'Ingrese su correo electronico',
                             hintStyle: GoogleFonts.imprima(),
                             fillColor: Colors.black,
                           ),
-                          onChanged: (value){
+                          onChanged: (value) {
                             print(value);
                           },
                         ),
-                        
-                        SizedBox(height: 13,),
+
+                        SizedBox(
+                          height: 13,
+                        ),
                         Row(
                           children: [
                             Text(
                               "Contraseña",
                               style: GoogleFonts.imprima(
-                                color: Colors.black,
-                                fontSize: 20
-                              ),
+                                  color: Colors.black, fontSize: 20),
                             ),
                           ],
                         ),
-                        SizedBox(height: 13,),
+                        SizedBox(
+                          height: 13,
+                        ),
                         TextFormField(
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                          hintText: 'Ingrese su contraseña',
-                          hintStyle: GoogleFonts.imprima(),
-                          fillColor: Colors.black,
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10)),
+                            hintText: 'Ingrese su contraseña',
+                            hintStyle: GoogleFonts.imprima(),
+                            fillColor: Colors.black,
                           ),
                           enableSuggestions: false,
                           obscureText: true,
                           autocorrect: false,
-                          onChanged: (value){
+                          onChanged: (value) {
                             print(value);
                           },
                         ),
-                        SizedBox(height: 40,),
+                        SizedBox(
+                          height: 40,
+                        ),
                         Row(
                           children: [
-                            SizedBox(width: 35,),
-                            IconButton(
-                              onPressed: _toggleIcon,
-                              icon: 
-                              providercheck == false 
-                                  ? SvgPicture.asset(
-                                      'assets/svgs/usercheck.svg',
-                                      width: 70,
-                                      height: 70,
-                                    )
-                                  : SvgPicture.asset(
-                                      'assets/svgs/user.svg',
-                                      width: 70,
-                                      height: 70,
-                                    )
+                            SizedBox(
+                              width: 35,
                             ),
-                            SizedBox(width: 100,),
                             IconButton(
-                              onPressed: _toggleIcon,
-                              icon: 
-                              usercheck == false 
-                                ? SvgPicture.asset(
-                                    'assets/svgs/providercheck.svg',
-                                    width: 70,
-                                    height: 70,
-                                  )
-                                : SvgPicture.asset(
-                                    'assets/svgs/provider.svg',
-                                    width: 70,
-                                    height: 70,
-                                  )
+                                onPressed: _toggleIcon,
+                                icon: providercheck == false
+                                    ? SvgPicture.asset(
+                                        'assets/svgs/usercheck.svg',
+                                        width: 70,
+                                        height: 70,
+                                      )
+                                    : SvgPicture.asset(
+                                        'assets/svgs/user.svg',
+                                        width: 70,
+                                        height: 70,
+                                      )),
+                            SizedBox(
+                              width: 100,
                             ),
+                            IconButton(
+                                onPressed: _toggleIcon,
+                                icon: usercheck == false
+                                    ? SvgPicture.asset(
+                                        'assets/svgs/providercheck.svg',
+                                        width: 70,
+                                        height: 70,
+                                      )
+                                    : SvgPicture.asset(
+                                        'assets/svgs/provider.svg',
+                                        width: 70,
+                                        height: 70,
+                                      )),
                           ],
                         ),
-                        SizedBox(height: 20,),
-                        
+                        SizedBox(
+                          height: 20,
+                        ),
+
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
                             TextButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               style: ButtonStyle(
-                                backgroundColor: WidgetStateProperty.all(Color.fromRGBO(244, 196, 48, 1)),
+                                backgroundColor: WidgetStateProperty.all(
+                                    Color.fromRGBO(244, 196, 48, 1)),
                                 shape: WidgetStateProperty.all(
                                   RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(7)
-                                  ),
+                                      borderRadius: BorderRadius.circular(7)),
                                 ),
-                                padding: WidgetStateProperty.all(EdgeInsets.fromLTRB(0, 15, 0, 15)),
+                                padding: WidgetStateProperty.all(
+                                    EdgeInsets.fromLTRB(0, 15, 0, 15)),
                               ),
                               child: Text(
                                 'Ingresar',
                                 style: GoogleFonts.imprima(
-                                  color: Colors.black,
-                                  fontSize: 20
-                                ),
+                                    color: Colors.black, fontSize: 20),
                               ),
                             ),
                           ],

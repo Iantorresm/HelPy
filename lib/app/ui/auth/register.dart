@@ -77,7 +77,7 @@ class _ContainerSesionState extends State<ContainerRegister> {
                         Row(
                           children: [
                             Text(
-                              "Correo electronico",
+                              "Correo electrónico",
                               style: GoogleFonts.imprima(
                                 color: Colors.black,
                                 fontSize: 20,
