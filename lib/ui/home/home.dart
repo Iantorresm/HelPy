@@ -39,52 +39,52 @@ class _HomePageState extends State<HomePage> {
     List<Prestador> getPrestadores(){
       const data = [
         {
-            "nombre": "Mario",
-            "apellido": "Toledo",
-            "descripcion":"Mario Toledo es un prestador de servicios de reparacion de coches y neumaticos. Este es su perfil.",
-            "direccion": "Calle 123",
-            "telefono": "123456789",
-            "servicios":[
-                {
-                    "nombre": "Cambio de neumatico",
-                    "costo": 100000.0,
-                    "descripcion": "Cambio de neumatico"
-                },
-                {
-                    "nombre": "Reparacion",
-                    "costo": 40000.0,
-                    "descripcion": "Reparacion de coche"
-                },
-                {
-                    "nombre": "Balanceo",
-                    "costo": 70000.0,
-                    "descripcion": "Descripcion del servicio 3"
-                }
-            ]
+          "nombre": "Mario",
+          "apellido": "Toledo",
+          "descripcion":"Mario Toledo es un prestador de servicios de reparacion de coches y neumaticos. Este es su perfil.",
+          "direccion": "Calle 123",
+          "telefono": "123456789",
+          "servicios":[
+              {
+                  "nombre": "Cambio de neumatico",
+                  "costo": 100000.0,
+                  "descripcion": "Cambio de neumatico"
+              },
+              {
+                  "nombre": "Reparacion",
+                  "costo": 40000.0,
+                  "descripcion": "Reparacion de coche"
+              },
+              {
+                  "nombre": "Balanceo",
+                  "costo": 70000.0,
+                  "descripcion": "Descripcion del servicio 3"
+              }
+          ]
         },
         {
-            "nombre": "Pedro",
-            "apellido": "Perez",
-            "direccion": "Calle 123",
-            "descripcion":"Propietario de una gomería con años de experiencia especializado en brindar soluciones rápidas y de calidad, priorizando la seguridad y satisfacción de sus clientes",
-            "telefono": "123456789",
-            "servicios":[
-                {
-                    "nombre": "Cambio de neumatico",
-                    "costo": 100000.0,
-                    "descripcion": "Cambio de neumatico"
-                },
-                {
-                    "nombre": "Reparacion",
-                    "costo": 40000.0,
-                    "descripcion": "Reparacion de coche"
-                },
-                {
-                    "nombre": "Balanceo",
-                    "costo": 70000.0,
-                    "descripcion": "Descripcion del servicio 3"
-                }
-            ]
+          "nombre": "Pedro",
+          "apellido": "Perez",
+          "direccion": "Calle 123",
+          "descripcion":"Propietario de una gomería con años de experiencia especializado en brindar soluciones rápidas y de calidad, priorizando la seguridad y satisfacción de sus clientes",
+          "telefono": "123456789",
+          "servicios":[
+            {
+                "nombre": "Cambio de neumatico",
+                "costo": 100000.0,
+                "descripcion": "Cambio de neumatico"
+            },
+            {
+              "nombre": "Reparacion",
+              "costo": 40000.0,
+              "descripcion": "Reparacion de coche"
+            },
+            {
+              "nombre": "Balanceo",
+              "costo": 70000.0,
+              "descripcion": "Descripcion del servicio 3"
+            }
+          ]
         }
     ];
       
@@ -201,53 +201,136 @@ class _HomePageState extends State<HomePage> {
                 itemCount: prestadores.length,
                 itemBuilder: (context, index) {
                   final prestador = prestadores[index];
-                  final servicios = prestadores[index].servicios;
+                  print(prestador);
+                  final servicios = prestador.servicios;
                   return Container(
+                    margin: EdgeInsets.symmetric(vertical: 8), // Espaciado externo
+                    padding: EdgeInsets.all(16), // Espaciado interno
                     decoration: BoxDecoration(
                       border: Border.all(
-                        width: 1.0, 
+                        width: 1.0,
+                        color: Colors.grey,
                       ),
-                      borderRadius: BorderRadius.circular(10), 
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                    // child: ListTile(
-                    //     leading: Image.asset(
-                    //       "assets/example-icon-perfil.png",
-                    //       width: 300,
-                    //       height: 300,
-                    //       ),
-                    //     title: Text(
-                    //       "${prestador.nombre} ${prestador.apellido}",
-                    //       style: TextStyle(
-                    //         fontSize: 30,
-                    //         fontWeight: FontWeight.bold
-                    //       ),
-                    //     ),
-                    //     subtitle: Column(
-                    //       children:[
-                    //         Row(
-                    //           children: [
-                    //             Expanded(
-                    //               child: Text(
-                    //                 prestador.descripcion,
-                    //                 style:TextStyle(
-                    //                   fontSize: 20,
-                    //                 ),
-                    //               ),
-                    //             )
-                    //           ],
-                    //         ),
-                    //         Row(
-                    //           children: [
-                    //             for (var ser in servicios) Text(ser.nombre)
-                    //           ],
-                    //         ),
-                    //       ] 
-                    //     ),
-                    //   ),
+                    child: Row(
+                      // crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Imagen del perfil
+                        Column(
+                          children: [
+                            Image.asset(
+                              "assets/example-icon-perfil.png",
+                              width: 100,
+                              height: 100,
+                              fit: BoxFit.cover,
+                            ),
+                            SizedBox(height: 8),
+                            Row(
+                              children: List.generate(4, (index) {
+                                return Icon(Icons.star,
+                                    color: Colors.black, size: 16);
+                              }),
+                            ),
+                          ],
+                        ),
+                        SizedBox(width:16), // Espaciado entre imagen y contenido principal
+
+                        // Información principal
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              // Nombre del prestador
+                              Text(
+                                "${prestador.nombre} ${prestador.apellido}",
+                                style: TextStyle(
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              SizedBox(height: 8),
+                              // Descripción
+                              Text(
+                                prestador.descripcion,
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.grey[800],
+                                ),
+                                maxLines:3, // Limita la cantidad de líneas visibles
+                                overflow: TextOverflow.ellipsis, // Agrega "..." si el texto es muy largo
+                              ),
+                              SizedBox(height: 12),
+                              
+                              // Categorías
+                              Wrap(
+                                spacing: 8, // Espaciado horizontal entre chips
+                                children: servicios.map((cat) {
+                                  return Chip(
+                                    label: Text(cat.nombre),
+                                    backgroundColor: Colors.grey[200],
+                                  );
+                                }).toList(),
+                              ),
+                            ],
+                          ),
+                        ),
+
+                        SizedBox(width:16), // Espaciado entre contenido principal y servicios
+
+                        // Servicios y precios
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: servicios.map((ser) {
+                            return Container(
+                              margin: EdgeInsets.only(bottom: 8),
+                              padding: EdgeInsets.all(8),
+                              decoration: BoxDecoration(
+                                border:
+                                    Border.all(color: Colors.grey, width: 1),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    Icons
+                                        .settings, // Puedes cambiar el ícono según el servicio
+                                    size: 32,
+                                    color: Colors.black,
+                                  ),
+                                  SizedBox(width: 8),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        ser.nombre,
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      // Text(
+                                      //   "${ser.precio} Gs.",
+                                      //   style: TextStyle(
+                                      //     fontSize: 14,
+                                      //     color: Colors.grey[700],
+                                      //   ),
+                                      // ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            );
+                          }).toList(),
+                        ),
+                      ],
+                    ),
                   );
                 },
               ),
             )
+
         
           ],
         ),
