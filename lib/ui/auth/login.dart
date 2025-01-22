@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:helpy/ui/auth/registerNormal.dart';
 import 'package:helpy/ui/auth/registerWide.dart';
+import 'package:helpy/ui/auth/prototypeTextAndInput.dart';
 import 'dart:ui';
 
 class Login extends StatefulWidget {
@@ -21,6 +22,8 @@ class _LoginState extends State<Login> {
   String _errorText = '';
   bool _passvalid = false;
   bool _boolbutton = false;
+  bool selected = false;
+
   void _toggleIcon() {
     setState(() {
       _usercheck = !_usercheck;
@@ -58,6 +61,7 @@ class _LoginState extends State<Login> {
                       // color: Colors.red,
                     ),
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Container(
                           width: 60,
@@ -68,123 +72,88 @@ class _LoginState extends State<Login> {
                           ), 
                         ),
                         // Por que hay dos SizedBox? No preguntes, funciona
-                        SizedBox(width: 300,),
-                        SizedBox(height: 20,),
-                        Row(
+                        // SizedBox(width: 300,),
+                        // SizedBox(height: 20,),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Text(
-                              "Inicia Sesion",
-                              style: GoogleFonts.imprima(
-                                color: Colors.black,
-                                fontSize: 20
-                              ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            TextButton(
-                              onPressed: (){
-                                widget.onDismissed();
-                                setState(() {
-                                  Navigator.pop(context);
-                                });
-                                showDialog(
-                                  context: context,
-                                  builder: (BuildContext context) => BackdropFilter(filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                                  child: LayoutBuilder(
-                                    builder: (BuildContext context, BoxConstraints constraints) {
-                                      if(constraints.maxWidth >= 600){
-                                        // showDialog(
-                                        //   context: context,
-                                        //   builder: (BuildContext context) => BackdropFilter(
-                                        //     filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                                        //     child: ContainerRegister(
-                                        //       onDismissed: (){
-                                        //         Navigator.pop(context);
-                                        //       },
-                                        //     ),
-                                        //   ),
-                                        // );
-                                        // return Scaffold(
-                                        //   body: ContainerRegisterWide(onDismissed: (){
-                                        //     Navigator.pop(context);
-                                        //   }),
-                                        // );
-                                        return ContainerRegisterWide(onDismissed: (){
-                                          Navigator.pop(context);
-                                        },);
-                                      }else{
-                                        // return ContainerRegisterNormal(onDismissed: (){
-                                        //     Navigator.pop(context);
-                                        //   },),
-                                        //   );
-                                        // }
-                                        return ContainerRegisterNormal(onDismissed: (){
-                                          Navigator.pop(context);
-                                        },);
-                                      }
-                                      },
-                                    ),
-                                  ),
-                                );
-                              },
-                            
-                              // Por alguna razon que desconozco, el boton
-                              // no tiene bold al pulsar, sino al mantener pulsado
-                              style: ButtonStyle(
-                                backgroundColor: WidgetStateProperty.all(Colors.transparent),
-                                padding: WidgetStateProperty.all(EdgeInsets.fromLTRB(0, 0, 0, 0)),
-                                splashFactory: NoSplash.splashFactory,
-                                overlayColor: WidgetStateProperty.all(Colors.transparent),
-                                textStyle: WidgetStateProperty.resolveWith<TextStyle>((states) {
-                                  if (states.contains(WidgetState.pressed)) {
-                                    return TextStyle(fontWeight: FontWeight.bold);
-                                  }
-                                  return TextStyle(fontWeight: FontWeight.normal);
-                                }),
-                              ),
+                            SizedBox(
+                              width: 330,
                               child: Text(
-                                "O crea una cuenta",
+                                "Inicia Sesion",
                                 style: GoogleFonts.imprima(
-                                  color: Colors.blue,
-                                  decoration: TextDecoration.underline,
+                                  color: Colors.black,
+                                  fontSize: 20
                                 ),
                               ),
                             ),
-                          ],
-                        ),
-                        SizedBox(height: 27,),
-                        Row(
-                          children: [
-                            Wrap(
+                            Row(
                               children: [
-                                Icon(Icons.email_outlined,size: 27,),
-                                Text(
-                                  " Correo electronico",
-                                  style: GoogleFonts.imprima(
-                                    color: Colors.black,
-                                    fontSize: 20,
+                                SizedBox(
+                                  child: TextButton(
+                                    onPressed: (){
+                                      widget.onDismissed();
+                                      setState(() {
+                                        Navigator.pop(context);
+                                      });
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) => BackdropFilter(filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                                        child: LayoutBuilder(
+                                          builder: (BuildContext context, BoxConstraints constraints) {
+                                            if(constraints.maxWidth >= 600){
+                                              return ContainerRegisterWide(onDismissed: (){
+                                                Navigator.pop(context);
+                                              },);
+                                            }else{
+                                              return ContainerRegisterNormal(onDismissed: (){
+                                                Navigator.pop(context);
+                                              },);
+                                            }
+                                            },
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                    // Por alguna razon que desconozco, el boton
+                                    // no tiene bold al pulsar, sino al mantener pulsado
+                                    style: ButtonStyle(
+                                      backgroundColor: WidgetStateProperty.all(Colors.transparent),
+                                      padding: WidgetStateProperty.all(EdgeInsets.fromLTRB(0, 0, 0, 0)),
+                                      splashFactory: NoSplash.splashFactory,
+                                      overlayColor: WidgetStateProperty.all(Colors.transparent),
+                                      textStyle: WidgetStateProperty.resolveWith<TextStyle>((states) {
+                                        if (states.contains(WidgetState.pressed)) {
+                                          return TextStyle(fontWeight: FontWeight.bold);
+                                        }
+                                        return TextStyle(fontWeight: FontWeight.normal);
+                                      }),
+                                    ),
+                                    child: Text(
+                                      "O crea una cuenta",
+                                      style: GoogleFonts.imprima(
+                                        color: Colors.blue,
+                                        decoration: TextDecoration.underline,
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ],
                             ),
                           ],
                         ),
-                        SizedBox(height: 13,),
-                        TextField(
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                            hintText: 'Ingrese su correo electronico',
-                            hintStyle: GoogleFonts.imprima(),
-                            fillColor: Colors.black,
-                          ),
+                        fPrototypeTextAndInput(
+                          content: "Ingrese su correo electronico",
+                          thisTitle: "Correo electronico",
+                          thisIcon: Icon(Icons.email_outlined, size: 27,),
                           onChanged: (value){
                             print(value);
                           },
+                          thisEnableSuggestions: true,
+                          thisObscureText: false,
+                          thisAutocorrect: true,
                         ),
-                        
-                        SizedBox(height: 13,),
+                        // SizedBox(height: 13,),
                         Row(
                           children: [
                             Wrap(
@@ -201,7 +170,7 @@ class _LoginState extends State<Login> {
                             ),
                           ],
                         ),
-                        SizedBox(height: 13,),
+                        // SizedBox(height: 13,),
                         TextFormField(
                           decoration: InputDecoration(
                             border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
@@ -237,12 +206,28 @@ class _LoginState extends State<Login> {
                             return null;
                           },
                         ),
-                        SizedBox(height: 40,),
+                        // SizedBox(height: 40,),
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            SizedBox(width: 35,),
-                            IconButton(
+                            // SizedBox(width: 35,),
+                            OutlinedButton.icon(
+                              label: Text(""),
+                              style: TextButton.styleFrom(
+                                padding: EdgeInsets.fromLTRB(30, 30, 30, 30),
+                                iconColor: Colors.white,
+                                backgroundColor: _usercheck ? Color.fromRGBO(244, 196, 48, 0.7) : Colors.transparent,
+                                shape: RoundedRectangleBorder(
+                                  
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(10), // Esquina superior derecha redondeada
+                                    bottomLeft: Radius.circular(10), // Esquina inferior derecha redondeada
+                                  ),
+                                  
+                                ),
+                              ),
                               onPressed: _toggleIcon,
+
                               icon: 
                               _providercheck == false 
                                   ? SvgPicture.asset(
@@ -256,9 +241,21 @@ class _LoginState extends State<Login> {
                                       height: 70,
                                     )
                             ),
-                            SizedBox(width: 100,),
-                            IconButton(
+                            // SizedBox(width: 100,),
+                            OutlinedButton.icon(
+                              label: Text(""),
                               onPressed: _toggleIcon,
+                              style: TextButton.styleFrom(
+                                padding: EdgeInsets.fromLTRB(30, 30, 30, 30),
+                                iconColor: Colors.white,
+                                backgroundColor: _providercheck ? Color.fromRGBO(244, 196, 48, 0.7) : Colors.transparent,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(10), // Esquina superior derecha redondeada
+                                    bottomRight: Radius.circular(10), // Esquina inferior derecha redondeada
+                                  ),
+                                ),
+                              ),
                               icon: 
                               _usercheck == false 
                                 ? SvgPicture.asset(
@@ -274,7 +271,7 @@ class _LoginState extends State<Login> {
                             ),
                           ],
                         ),
-                        SizedBox(height: 20,),
+                        // SizedBox(height: 20,),
                         
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:helpy/ui/auth/prototypeTextAndInput.dart';
 
 class MoreRegisterWide extends StatefulWidget {
   final VoidCallback onDismissed;

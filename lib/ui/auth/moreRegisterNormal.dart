@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:helpy/ui/auth/prototypeTextAndInput.dart';
 
 class MoreRegisterNormal extends StatefulWidget {
   final VoidCallback onDismissed;
@@ -27,8 +28,8 @@ class _MoreRegisterNormalState extends State<MoreRegisterNormal> {
               key: const ValueKey('containerSesion'),
               direction: DismissDirection.vertical,
               child: Container(
-                width: 500,
-                height: 660,
+                width: 400,
+                height: 600,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(25),
@@ -38,8 +39,10 @@ class _MoreRegisterNormalState extends State<MoreRegisterNormal> {
                     width: 400-70,
                     height: 670-70,
                     decoration: BoxDecoration(
+                      // color: Colors.blue
                     ),
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Container(
                           width: 60,
@@ -50,164 +53,88 @@ class _MoreRegisterNormalState extends State<MoreRegisterNormal> {
                           ), 
                         ),
                         // Por que hay dos SizedBox? No preguntes, funciona
-                        // SizedBox(width: 300,)0,
-                        SizedBox(height: 20,),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Ya casi termina tu registro",
-                              style: GoogleFonts.imprima(
-                                color: Colors.black,
-                                fontSize: 20
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 27,),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              width: 250,
-                              child: Text(
-                                "Nombre",
-                                style: GoogleFonts.imprima(
-                                  color: Colors.black,
-                                  fontSize: 20,
-                                ),
-                              ),
-                            ),
-                            SizedBox(height: 13,),
-                          ]
-                        ),
-                        TextField( 
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                            hintText: 'Ingrese su nombre',
-                            hintStyle: GoogleFonts.imprima(),
-                            fillColor: Colors.black,
-                          ),
-                          onChanged: (value){
-                            print(value);
-                          },
-                        ),
-                        SizedBox(height: 13,width: 30,),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              width: 250,
-                              child: Text(
-                                "Apellido",
+                        // SizedBox(width: 300,),
+                        // SizedBox(height: 20,),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Ya casi termina tu registro",
                                 style: GoogleFonts.imprima(
                                   color: Colors.black,
                                   fontSize: 20
                                 ),
                               ),
-                            ),
-                            SizedBox(height: 13,),
-                          ]
-                        ),
-                        TextFormField(
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                          hintText: 'Ingrese su apellido',
-                          hintStyle: GoogleFonts.imprima(),
-                          fillColor: Colors.black,
+                            ],
                           ),
-                          onChanged: (value){
-                            print(value);
-                          },
-                        ),
-                        
-                        SizedBox(height: 13,),
-                        Row(
-                          children: [
-                            Wrap(
-                              children: [
-                                Icon(Icons.location_on_outlined,size: 27,),
-                                Text(
-                                  " Direccion",
-                                  style: GoogleFonts.imprima(
-                                    color: Colors.black,
-                                    fontSize: 20
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 13,),
-                        TextFormField(
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                          hintText: 'Ingrese su direccion',
-                          hintStyle: GoogleFonts.imprima(),
-                          fillColor: Colors.black,
+                          fPrototypeTextAndInput(
+                            content: "Ingrese su nombre",
+                            thisTitle: "Nombre",
+                            onChanged: (value){
+                              print(value);
+                            },
+                            thisAutocorrect: true,
+                            thisObscureText: false,
+                            thisEnableSuggestions: true,
                           ),
-                          onChanged: (value){
-                            print(value);
-                          },
-                        ),
-                        SizedBox(height: 13,),
-                        Row(
-                          children: [
-                            Wrap(
-                              children: [
-                                Icon(Icons.phone_android_outlined,size: 27,),
-                                Text(
-                                  "Telefono",
-                                  style: GoogleFonts.imprima(
-                                    color: Colors.black,
-                                    fontSize: 20
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 13,),
-                        TextFormField(
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                          hintText: 'Ingrese su telefono',
-                          hintStyle: GoogleFonts.imprima(),
-                          fillColor: Colors.black,
+                          fPrototypeTextAndInput(
+                            content: "Ingrese su apellido",
+                            thisTitle: "Apellido",
+                            onChanged: (value){
+                              print(value);
+                            },
+                            thisAutocorrect: true,
+                            thisObscureText: false,
+                            thisEnableSuggestions: true,
                           ),
-                          onChanged: (value){
-                            print(value);
-                          },
-                        ),
-                        SizedBox(height: 40,),
-                        SizedBox(height: 20,),
-                        
+                          fPrototypeTextAndInput(
+                            content: "Ingrese su direccion",
+                            thisTitle: "Direccion",
+                            thisIcon: Icon(Icons.location_on_outlined,size: 27,),
+                            onChanged: (value){
+                              print(value);
+                            },
+                            thisAutocorrect: true,
+                            thisObscureText: false,
+                            thisEnableSuggestions: true,
+                          ),
+                          fPrototypeTextAndInput(
+                            content: "Ingrese su telefono",
+                            thisTitle: "Telefono",
+                            thisIcon: Icon(Icons.phone_android_outlined,size: 27,),
+                            onChanged: (value){
+                              print(value);
+                            },
+                            thisAutocorrect: true,
+                            thisObscureText: false,
+                            thisEnableSuggestions: true,
+                          ),
                         Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            TextButton(
-                              onPressed: (){
-                                Navigator.pop(context);
-                              },
-                              style: ButtonStyle(
-                                backgroundColor: WidgetStateProperty.all(Color.fromRGBO(244, 196, 48, 1)),
-                                shape: WidgetStateProperty.all(
-                                  RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(7)
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              TextButton(
+                                onPressed: (){
+                                  Navigator.pop(context);
+                                },
+                                style: ButtonStyle(
+                                  backgroundColor: WidgetStateProperty.all(Color.fromRGBO(244, 196, 48, 1)),
+                                  shape: WidgetStateProperty.all(
+                                    RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(7)
+                                    ),
+                                  ),
+                                  padding: WidgetStateProperty.all(EdgeInsets.fromLTRB(0, 15, 0, 15)),
+                                ),
+                                child: Text(
+                                  'Ingresar',
+                                  style: GoogleFonts.imprima(
+                                    color: Colors.black,
+                                    fontSize: 20
                                   ),
                                 ),
-                                padding: WidgetStateProperty.all(EdgeInsets.fromLTRB(0, 15, 0, 15)),
                               ),
-                              child: Text(
-                                'Ingresar',
-                                style: GoogleFonts.imprima(
-                                  color: Colors.black,
-                                  fontSize: 20
-                                ),
-                              ),
-                            ),
-                          ],
-                        )
+                            ],
+                          ),
                       ],
                     ),
                   ),

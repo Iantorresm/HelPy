@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'dart:ui';
 
 import 'package:helpy/ui/auth/moreRegisterWide.dart';
-
+import 'package:helpy/ui/auth/moreRegisterNormal.dart';
 class ContainerRegisterWide extends StatefulWidget {
   final VoidCallback onDismissed;
 
@@ -15,13 +15,13 @@ class ContainerRegisterWide extends StatefulWidget {
 }
 
 class _ContainerRegisterWideState extends State<ContainerRegisterWide> {
-  bool usercheck = true;
-  bool providercheck = false;
+  bool _usercheck = true;
+  bool _providercheck = false;
   
   void _toggleIcon() {
     setState(() {
-      usercheck = !usercheck;
-      providercheck = !providercheck;
+      _usercheck = !_usercheck;
+      _providercheck = !_providercheck;
     });
   }
 
@@ -192,12 +192,27 @@ class _ContainerRegisterWideState extends State<ContainerRegisterWide> {
                         SizedBox(width: 13,),
                         // SizedBox(height: 40,),
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            SizedBox(width: 35,),
-                            IconButton(
+                            // SizedBox(width: 35,),
+                            OutlinedButton.icon(
+                              label: Text(""),
+                              style: TextButton.styleFrom(
+                                padding: EdgeInsets.fromLTRB(30, 30, 30, 30),
+                                iconColor: Colors.white,
+                                backgroundColor: _usercheck ? Color.fromRGBO(244, 196, 48, 0.7) : Colors.transparent,
+                                shape: RoundedRectangleBorder(
+                                  
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(10), // Esquina superior derecha redondeada
+                                    bottomLeft: Radius.circular(10), // Esquina inferior derecha redondeada
+                                  ),
+                                  
+                                ),
+                              ),
                               onPressed: _toggleIcon,
                               icon: 
-                              providercheck == false 
+                              _providercheck == false 
                                 ? SvgPicture.asset(
                                     'assets/svgs/usercheck.svg',
                                     width: 70,
@@ -209,11 +224,25 @@ class _ContainerRegisterWideState extends State<ContainerRegisterWide> {
                                     height: 70,
                                 )
                             ),
-                            SizedBox(width: 100,),
-                            IconButton(
+                            // SizedBox(width: 100,),
+                            OutlinedButton.icon(
+                              label: Text(""),
+                              style: TextButton.styleFrom(
+                                padding: EdgeInsets.fromLTRB(30, 30, 30, 30),
+                                iconColor: Colors.white,
+                                backgroundColor: _providercheck ? Color.fromRGBO(244, 196, 48, 0.7) : Colors.transparent,
+                                shape: RoundedRectangleBorder(
+                                  
+                                  borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(10), // Esquina superior derecha redondeada
+                                    bottomRight: Radius.circular(10), // Esquina inferior derecha redondeada
+                                  ),
+                                  
+                                ),
+                              ),
                               onPressed: _toggleIcon,
                               icon: 
-                              usercheck == false 
+                              _usercheck == false 
                                 ? SvgPicture.asset(
                                     'assets/svgs/providercheck.svg',
                                     width: 70,
@@ -240,9 +269,21 @@ class _ContainerRegisterWideState extends State<ContainerRegisterWide> {
                                   context: context,
                                   builder: (BuildContext context) => BackdropFilter(
                                     filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                                    child: MoreRegisterWide(
-                                      onDismissed: (){
-                                        Navigator.pop(context);
+                                    child: LayoutBuilder(
+                                      builder: (BuildContext context, BoxConstraints constraints) {
+                                        if(constraints.maxWidth >= 600){
+                                          return MoreRegisterWide(
+                                            onDismissed: (){
+                                              Navigator.pop(context);
+                                            },
+                                          );
+                                        }else{
+                                          return MoreRegisterNormal(
+                                            onDismissed: (){
+                                              Navigator.pop(context);
+                                            },
+                                          );
+                                        }
                                       },
                                     ),
                                   ),
