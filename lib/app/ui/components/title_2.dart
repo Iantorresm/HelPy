@@ -12,6 +12,7 @@ class Title2 extends StatelessWidget {
       style: Theme.of(context).textTheme.displayLarge!.copyWith(
             fontSize: 20,
             fontWeight: FontWeight.w400,
+            color: color,
           ),
     );
   }
